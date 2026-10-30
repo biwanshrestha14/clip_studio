@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+.DS_Store
+
+# Large media files (optional to exclude from git)
+downloads/*.mp4
+downloads/*.webm
+downloads/*.part
+downloads/*.ytdl

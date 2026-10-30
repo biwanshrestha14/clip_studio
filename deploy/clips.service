@@ -1,0 +1,28 @@
+[Unit]
+Description=Clips Studio Backend Service
+After=network.target
+
+[Service]
+Type=simple
+# Replace 'omnivoid' with your server username
+User=omnivoid
+# Replace with the absolute path to your project directory
+WorkingDirectory=/home/omnivoid/clips
+# Path to uvicorn inside the python virtual environment
+ExecStart=/home/omnivoid/clips/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8000 --workers 1
+
+# Auto restart on crash
+Restart=always
+RestartSec=5s
+
+# Environment variables
+Environment="PYTHONUNBUFFERED=1"
+
+# Security & sandbox settings
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/omnivoid/clips
+
+[Install]
+WantedBy=multi-user.target

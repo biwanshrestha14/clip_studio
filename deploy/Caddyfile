@@ -1,0 +1,31 @@
+your-domain.com {
+    # Replace your-domain.com with your domain or server IP (:80 for HTTP only)
+
+    # Serve built frontend
+    root * /home/omnivoid/clips/frontend/dist
+
+    # Proxy API requests to FastAPI
+    handle /api/* {
+        reverse_proxy 127.0.0.1:8000 {
+            transport http {
+                response_header_timeout 300s
+            }
+        }
+    }
+
+    # High performance video streaming
+    handle /downloads/* {
+        file_server {
+            root /home/omnivoid/clips
+        }
+    }
+
+    # Serve SPA routes
+    handle {
+        file_server
+        try_files {path} /index.html
+    }
+
+    # Compression
+    encode gzip zstd
+}
