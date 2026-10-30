@@ -4,12 +4,12 @@ After=network.target
 
 [Service]
 Type=simple
-# Replace 'omnivoid' with your server username
-User=omnivoid
-# Replace with the absolute path to your project directory
-WorkingDirectory=/home/omnivoid/clips
+# Server user
+User=ubuntu
+# Absolute path to your project directory on the server
+WorkingDirectory=/home/ubuntu/clip_studio
 # Path to uvicorn inside the python virtual environment
-ExecStart=/home/omnivoid/clips/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8000 --workers 1
+ExecStart=/home/ubuntu/clip_studio/venv/bin/uvicorn server:app --host 127.0.0.1 --port 8000 --workers 1
 
 # Auto restart on crash
 Restart=always
@@ -22,7 +22,7 @@ Environment="PYTHONUNBUFFERED=1"
 NoNewPrivileges=true
 ProtectSystem=full
 ProtectHome=read-only
-ReadWritePaths=/home/omnivoid/clips
+ReadWritePaths=/home/ubuntu/clip_studio
 
 [Install]
 WantedBy=multi-user.target
